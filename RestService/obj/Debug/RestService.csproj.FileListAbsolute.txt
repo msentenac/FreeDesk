@@ -150,7 +150,6 @@ F:\HacktivDay\RestService\RestService\bin\zh-Hant\System.Spatial.resources.dll
 F:\HacktivDay\RestService\RestService\obj\Debug\RestService.dll
 F:\HacktivDay\RestService\RestService\obj\Debug\RestService.pdb
 F:\HacktivDay\RestService\RestService\obj\Debug\RestService.csprojResolveAssemblyReference.cache
-C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\obj\Debug\RestService.dll
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\RestService.dll.config
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\RestService.dll
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\RestService.pdb
@@ -224,4 +223,5 @@ C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\ko\System.Spatial.resourc
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\ru\System.Spatial.resources.dll
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\obj\Debug\RestService.dll
 C:\Users\tmaurel\Source\Repos\FreeDesk\RestService\obj\Debug\RestService.pdb
