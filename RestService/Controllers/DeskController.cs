@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Web.Http;
 
 namespace RestService.Controllers
@@ -13,11 +10,11 @@ namespace RestService.Controllers
         //
         // GET: /Desk/Reserve?idDesk&idBadge
         [ActionName ("Reserve")]
-        public DeskReserved Get ([FromUri]string idDesk, [FromUri]string codeBadge)
+        public DeskReserved Get ([FromUri]int idDesk, [FromUri]string codeBadge)
         {
             FreeDeskDataContext freeDeskDataCtx = new FreeDeskDataContext (System.Configuration.ConfigurationManager.ConnectionStrings ["FreeDeskConnectionString"].ConnectionString);
             int idBadge = freeDeskDataCtx.Badge.Where (x => x.code == codeBadge).Select (x => x.id).FirstOrDefault ();
-            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == int.Parse (idDesk) && (x.idBadge == null || x.idBadge == idBadge)).FirstOrDefault ();
+            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == idDesk && (x.idBadge == null || x.idBadge == idBadge)).FirstOrDefault ();
             bool success = false;
             string username = string.Empty;
             if (deskTable != null)
@@ -27,7 +24,19 @@ namespace RestService.Controllers
                 int idUser = freeDeskDataCtx.Badge.Where (x => x.code == codeBadge).Select (x => x.idUser).FirstOrDefault ().Value;
                 User user = freeDeskDataCtx.User.Where (x => x.id == idUser).FirstOrDefault ();
                 if (user != null) username = user.name;
+
+                ///enregistrement d'une session
+                Session session = new Session ();
+                session.idDesk = idDesk;
+                session.StartDate = DateTime.Now;
+                session.idUser = idUser;
+                List<Session> Sessions = new List<Session> ();
+                Sessions.Add (session);
+                freeDeskDataCtx.Session.InsertAllOnSubmit (Sessions);
             };
+
+
+
             freeDeskDataCtx.SubmitChanges ();
             return new DeskReserved (success, username);
         }
@@ -35,14 +44,20 @@ namespace RestService.Controllers
         //
         // GET: /Desk/UnReserve?idDesk
         [ActionName ("UnReserve")]
-        public bool Get ([FromUri]string idDesk)
+        public bool Get ([FromUri]int idDesk)
         {
             bool success = true;
             FreeDeskDataContext freeDeskDataCtx = new FreeDeskDataContext (System.Configuration.ConfigurationManager.ConnectionStrings ["FreeDeskConnectionString"].ConnectionString);
-            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == int.Parse (idDesk)).FirstOrDefault ();
+            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == idDesk).FirstOrDefault ();
             if (deskTable != null)
             {
                 deskTable.idBadge = null;
+                //enregistrement de la date de fin de session
+                Session session = freeDeskDataCtx.Session.Where (x => x.idDesk == idDesk && x.EndDate == null).FirstOrDefault ();
+                if (session != null)
+                {
+                    session.EndDate = DateTime.Now;
+                }
             }
             else success = false;
             freeDeskDataCtx.SubmitChanges ();

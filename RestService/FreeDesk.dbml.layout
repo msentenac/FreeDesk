@@ -8,12 +8,6 @@
         <elementListCompartment Id="3d21b83a-7ede-4849-a4bb-0d05ccce82d9" absoluteBounds="4.3900000000000006, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8ce608aa-6a01-4e97-9bf4-5f9f506df346" absoluteBounds="4.125, 1.375, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/FreeDeskDataContext/Session" />
-      <nestedChildShapes>
-        <elementListCompartment Id="5ab54937-2fb3-421d-9a45-20a64afb3de7" absoluteBounds="4.14, 1.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="35eca367-fcb0-42ef-9ffc-6e5c0ec7f51d" absoluteBounds="8, 4.125, 2, 1.7708968098958331">
       <DataClassMoniker Name="/FreeDeskDataContext/User" />
       <nestedChildShapes>
@@ -30,6 +24,12 @@
       <DataClassMoniker Name="/FreeDeskDataContext/Desk" />
       <nestedChildShapes>
         <elementListCompartment Id="5c6e76fb-e328-4770-9f70-454b24e51195" absoluteBounds="8.265, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eb94f9f6-be89-4817-98cd-7acf18e950ef" absoluteBounds="4, 1.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/FreeDeskDataContext/Session" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b6b0c2b5-678e-4868-b2a5-a0349946a160" absoluteBounds="4.015, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
