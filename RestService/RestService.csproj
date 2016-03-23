@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\index2.html" />
+    <Content Include="Data\script.sql" />
     <Content Include="Global.asax" />
     <Content Include="FreeDesk.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
