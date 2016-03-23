@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript">  
+		google.load("visualization", "1", {packages:["bar"]});
+		google.setOnLoadCallback(drawLoseATonLineChart);
+
+		function drawLoseATonLineChart() {
+
+			var url = "http://localhost/RestWs/rating/";
+
+			var result = $.ajax({
+				method: 'POST',
+				url: url,
+				dataType: 'JSON',
+				async: false
+			});
+			var jsonData = result.responseText;
+			
+			var data = new google.visualization.DataTable();
+			
+			data.addColumn('string', 'idDesk');
+			data.addColumn('number', 'Temperature');
+			data.addColumn('number', 'Humidity');
+			data.addColumn('number', 'Sound');
+			
+			$.each(JSON.parse(jsonData), function (index, obj) {
+				data.addRow([obj.idDesk.toString(), obj.Temperature, obj.Humidity, obj.Sound]);
+			});
+
+			var options = {
+			  chart: {
+				title: 'Rating desk'
+			  }};
+			 
+
+			var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+			chart.draw(data, options);
+		}
+    </script>  
+
+	</head>
+  <body>
+    <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
