@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FreeDesk">
   <DataContextMoniker Name="/FreeDeskDataContext" />
   <nestedChildShapes>
-    <classShape Id="e0e94699-3d9e-400d-bea6-a975ad5f98ff" absoluteBounds="8.5, 2.375, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/FreeDeskDataContext/Desk" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a391cf40-f808-4bf6-8092-e71003eef2ef" absoluteBounds="8.515, 2.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="394c492f-fb15-4d0c-82ab-c9d16ac0e010" absoluteBounds="4.375, 3.375, 2, 1.3862939453125">
       <DataClassMoniker Name="/FreeDeskDataContext/Badge" />
       <nestedChildShapes>
@@ -30,6 +24,12 @@
       <DataClassMoniker Name="/FreeDeskDataContext/Rating" />
       <nestedChildShapes>
         <elementListCompartment Id="176eec35-3a90-4a2d-b695-3d2a455e6edd" absoluteBounds="0.64, 2.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2cafbcf3-1465-41e1-b305-ab372ccdf4e2" absoluteBounds="8.25, 1.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/FreeDeskDataContext/Desk" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5c6e76fb-e328-4770-9f70-454b24e51195" absoluteBounds="8.265, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -30,9 +30,6 @@ namespace RestService
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
-    partial void InsertDesk(Desk instance);
-    partial void UpdateDesk(Desk instance);
-    partial void DeleteDesk(Desk instance);
     partial void InsertBadge(Badge instance);
     partial void UpdateBadge(Badge instance);
     partial void DeleteBadge(Badge instance);
@@ -45,6 +42,9 @@ namespace RestService
     partial void InsertRating(Rating instance);
     partial void UpdateRating(Rating instance);
     partial void DeleteRating(Rating instance);
+    partial void InsertDesk(Desk instance);
+    partial void UpdateDesk(Desk instance);
+    partial void DeleteDesk(Desk instance);
     #endregion
 		
 		public FreeDeskDataContext() : 
@@ -75,14 +75,6 @@ namespace RestService
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Desk> Desk
-		{
-			get
-			{
-				return this.GetTable<Desk>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Badge> Badge
@@ -116,90 +108,12 @@ namespace RestService
 				return this.GetTable<Rating>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Desk")]
-	public partial class Desk : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _idBadge;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnidBadgeChanging(string value);
-    partial void OnidBadgeChanged();
-    #endregion
-		
-		public Desk()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		public System.Data.Linq.Table<Desk> Desk
 		{
 			get
 			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idBadge", DbType="NChar(10)")]
-		public string idBadge
-		{
-			get
-			{
-				return this._idBadge;
-			}
-			set
-			{
-				if ((this._idBadge != value))
-				{
-					this.OnidBadgeChanging(value);
-					this.SendPropertyChanging();
-					this._idBadge = value;
-					this.SendPropertyChanged("idBadge");
-					this.OnidBadgeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<Desk>();
 			}
 		}
 	}
@@ -787,6 +701,164 @@ namespace RestService
 					this._idBadge = value;
 					this.SendPropertyChanged("idBadge");
 					this.OnidBadgeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Desk")]
+	public partial class Desk : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _idBadge;
+		
+		private string _code;
+		
+		private string _comments;
+		
+		private string _localization;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnidBadgeChanging(System.Nullable<int> value);
+    partial void OnidBadgeChanged();
+    partial void OncodeChanging(string value);
+    partial void OncodeChanged();
+    partial void OncommentsChanging(string value);
+    partial void OncommentsChanged();
+    partial void OnlocalizationChanging(string value);
+    partial void OnlocalizationChanged();
+    #endregion
+		
+		public Desk()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idBadge", DbType="Int")]
+		public System.Nullable<int> idBadge
+		{
+			get
+			{
+				return this._idBadge;
+			}
+			set
+			{
+				if ((this._idBadge != value))
+				{
+					this.OnidBadgeChanging(value);
+					this.SendPropertyChanging();
+					this._idBadge = value;
+					this.SendPropertyChanged("idBadge");
+					this.OnidBadgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="NChar(50)")]
+		public string code
+		{
+			get
+			{
+				return this._code;
+			}
+			set
+			{
+				if ((this._code != value))
+				{
+					this.OncodeChanging(value);
+					this.SendPropertyChanging();
+					this._code = value;
+					this.SendPropertyChanged("code");
+					this.OncodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments", DbType="NChar(255)")]
+		public string comments
+		{
+			get
+			{
+				return this._comments;
+			}
+			set
+			{
+				if ((this._comments != value))
+				{
+					this.OncommentsChanging(value);
+					this.SendPropertyChanging();
+					this._comments = value;
+					this.SendPropertyChanged("comments");
+					this.OncommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_localization", DbType="NChar(255)")]
+		public string localization
+		{
+			get
+			{
+				return this._localization;
+			}
+			set
+			{
+				if ((this._localization != value))
+				{
+					this.OnlocalizationChanging(value);
+					this.SendPropertyChanging();
+					this._localization = value;
+					this.SendPropertyChanged("localization");
+					this.OnlocalizationChanged();
 				}
 			}
 		}

@@ -13,19 +13,19 @@ namespace RestService.Controllers
         //
         // GET: /Desk/Reserve?idDesk&idBadge
         [ActionName ("Reserve")]
-        public DeskReserved Get ([FromUri]string idDesk, [FromUri]string idBadge)
+        public DeskReserved Get ([FromUri]string idDesk, [FromUri]string codeBadge)
         {
             FreeDeskDataContext freeDeskDataCtx = new FreeDeskDataContext (System.Configuration.ConfigurationManager.ConnectionStrings ["FreeDeskConnectionString"].ConnectionString);
-            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == int.Parse (idDesk) && (x.idBadge == null || x.idBadge==idBadge)).FirstOrDefault ();
+            int idBadge = freeDeskDataCtx.Badge.Where (x => x.code == codeBadge).Select (x => x.id).FirstOrDefault ();
+            Desk deskTable = freeDeskDataCtx.Desk.Where (x => x.id == int.Parse (idDesk) && (x.idBadge == null || x.idBadge == idBadge)).FirstOrDefault ();
             bool success = false;
             string username = string.Empty;
             if (deskTable != null)
             {
                 success = true;
                 deskTable.idBadge = idBadge;
-                int idUser = freeDeskDataCtx.Badge.Where (x => x.code == idBadge).Select (x => x.idUser).FirstOrDefault ().Value;
+                int idUser = freeDeskDataCtx.Badge.Where (x => x.code == codeBadge).Select (x => x.idUser).FirstOrDefault ().Value;
                 User user = freeDeskDataCtx.User.Where (x => x.id == idUser).FirstOrDefault ();
-
                 if (user != null) username = user.name;
             };
             freeDeskDataCtx.SubmitChanges ();

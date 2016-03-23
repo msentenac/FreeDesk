@@ -13,12 +13,13 @@ namespace RestService.Controllers
         //
         // GET: /Rating/
         [ActionName ("PostRating")]
-        public bool Get (int idDesk, int soundLevel, float TemperatureLevel, float HumidityLevel, int idBadge)
+        public bool Get (int idDesk, int soundLevel, float TemperatureLevel, float HumidityLevel, string codeBadge)
         {
             bool success = true;
             try
             {
                 FreeDeskDataContext freeDeskDataCtx = new FreeDeskDataContext (System.Configuration.ConfigurationManager.ConnectionStrings ["FreeDeskConnectionString"].ConnectionString);
+                int idBadge = freeDeskDataCtx.Badge.Where (x => x.code == codeBadge).Select (x => x.id).FirstOrDefault ();
                 Rating rating = new Rating ();
                 rating.idDesk = idDesk;
                 rating.Sound = soundLevel;
@@ -47,7 +48,7 @@ namespace RestService.Controllers
         {
             FreeDeskDataContext freeDeskDataCtx = new FreeDeskDataContext (System.Configuration.ConfigurationManager.ConnectionStrings ["FreeDeskConnectionString"].ConnectionString);
             if (freeDeskDataCtx.Rating.Where (x => x.idDesk == idDesk).FirstOrDefault () == null) return null;
-            
+
             double temp = freeDeskDataCtx.Rating.Where (x => x.idDesk == idDesk).Select (x => x.Temperature).Average ().Value;
             double humidity = freeDeskDataCtx.Rating.Where (x => x.idDesk == idDesk).Select (x => x.Humidity).Average ().Value;
             double sound = freeDeskDataCtx.Rating.Where (x => x.idDesk == idDesk).Select (x => x.Sound).Average ().Value;
@@ -67,12 +68,13 @@ namespace RestService.Controllers
 
             List<Rating> ratings = new List<Rating> ();
 
-            var toto = freeDeskDataCtx.Rating.GroupBy (x => x.idDesk).Select (g => new { 
-                                                            idDesk = g.Select(x=>x.idDesk).First(),
-                                                            Temperature = g.Average (x => x.Temperature.Value),
-                                                            Sound = Convert.ToInt32(g.Average (x => x.Sound.Value)),
-                                                            Humidity = g.Average(x => x.Humidity.Value) 
-                                                    });
+            var toto = freeDeskDataCtx.Rating.GroupBy (x => x.idDesk).Select (g => new
+            {
+                idDesk = g.Select (x => x.idDesk).First (),
+                Temperature = g.Average (x => x.Temperature.Value),
+                Sound = Convert.ToInt32 (g.Average (x => x.Sound.Value)),
+                Humidity = g.Average (x => x.Humidity.Value)
+            });
 
             foreach (var item in toto)
             {
@@ -83,7 +85,7 @@ namespace RestService.Controllers
                 rating.Temperature = item.Temperature;
                 ratings.Add (rating);
             }
-            return ratings.ToList();
+            return ratings.ToList ();
         }
 
 
